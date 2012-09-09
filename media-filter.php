@@ -20,7 +20,7 @@
  * @version 0.1
  * @author Sami Keijonen <sami.keijonen@foxnet.fi>
  * @copyright Copyright (c) 2012, Sami Keijonen
- * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * @license http://www.gnu.org/licenses/gpl-2.0.html
  */
 
 /* Set up the plugin on the 'plugins_loaded' hook. */
