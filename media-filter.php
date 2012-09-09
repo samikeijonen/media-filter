@@ -133,6 +133,8 @@ function media_filter_columns_display( $column_name, $post ) {
  * Registering columns as sortable
  *
  * @since 0.1.0
+ 
+ * @todo: make columns width and height sortable, they are not yet.
  */
 function media_filter_columns_sortable( $columns ) {
 
@@ -180,25 +182,36 @@ function media_filter_upload_views_filterable( $views ) {
 		$class = '';
 	}
 	
-	/* Get current user attachment count. @link: http://codex.wordpress.org/Class_Reference/wpdb */
-	global $wpdb, $current_user;
-	$media_filter_count_mine_attachment = $wpdb->get_var( $wpdb->prepare(
-	"
-	SELECT COUNT(*)
-	FROM $wpdb->posts
-	WHERE post_type = 'attachment'
-	AND post_author = $current_user->ID
-	AND post_status != 'trash'
-	"
-	) );
-
-	$new_views = array(
-		//'mine-media' => sprintf( '<a %s href="%s">%s</a>', $class, esc_url( add_query_arg( 'author', get_current_user_id(), 'upload.php' ) ), _n( 'Mine <span class="count">(%d)</span>', 'Mine <span class="count">(%d)</span>', $media_filter_count_mine_attachment, 'media-filter' ), number_format_i18n( $media_filter_count_mine_attachment ) )
-		'media-filter-mine' => sprintf( '<a %s href="%s">%s</a>', $class, esc_url( add_query_arg( 'author', get_current_user_id(), 'upload.php' ) ), sprintf( _n( 'Mine <span class="count">(%s)</span>', 'Mine <span class="count">(%s)</span>', $media_filter_count_mine_attachment, 'media-filter' ), number_format_i18n( $media_filter_count_mine_attachment ) ) ) 
-	);
+	/* Get total user count. */
+	$media_filter_user_count = count_users();
+	$media_filter_user_total = $media_filter_user_count['total_users'];
 	
-	/* Return $views so that 'Mine' attachments are first. */
-	return array_merge( $new_views, $views );
+	/* Add 'mine' link only if there are more than one user. */
+	if ( $media_filter_user_total > 1 ) {
+	
+		/* Get current user attachment count. @link: http://codex.wordpress.org/Class_Reference/wpdb */
+		global $wpdb, $current_user;
+		$media_filter_count_mine_attachment = $wpdb->get_var( $wpdb->prepare(
+		"
+		SELECT COUNT(*)
+		FROM $wpdb->posts
+		WHERE post_type = 'attachment'
+		AND post_author = $current_user->ID
+		AND post_status != 'trash'
+		"
+		) );
+
+		$new_views = array(
+			'media-filter-mine' => sprintf( '<a %s href="%s">%s</a>', $class, esc_url( add_query_arg( 'author', get_current_user_id(), 'upload.php' ) ), sprintf( _n( 'Mine <span class="count">(%s)</span>', 'Mine <span class="count">(%s)</span>', $media_filter_count_mine_attachment, 'media-filter' ), number_format_i18n( $media_filter_count_mine_attachment ) ) ) 
+		);
+	
+		/* Return $views so that 'Mine' attachments are first. */
+		return array_merge( $new_views, $views );
+	
+	}
+	else {
+		return $views;
+	}
 	
 }
 
