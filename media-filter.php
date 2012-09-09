@@ -147,10 +147,11 @@ function media_filter_columns_sortable( $columns ) {
  */
 function media_filter_post_mime_types( $post_mime_types ) {
 
-	/* pdf is 'application/pdf'. */
+	/* PDF is 'application/pdf', ZIP is 'application/zip'.  */
 
 	$post_mime_types['application/pdf'] = array( __( 'PDFs', 'media-filter' ), __( 'Manage PDFs', 'media-filter' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' ) );
-
+	$post_mime_types['application/zip'] = array( __( 'ZIPs', 'media-filter' ), __( 'Manage ZIPs', 'media-filter' ), _n_noop( 'ZIP <span class="count">(%s)</span>', 'ZIPs <span class="count">(%s)</span>' ) );
+	
 	/* Return the $post_mime_types variable. */
 	return $post_mime_types;
 
