@@ -186,18 +186,18 @@ function media_filter_upload_views_filterable( $views ) {
 	$media_filter_user_count = count_users();
 	$media_filter_user_total = $media_filter_user_count['total_users'];
 	
-	/* Add 'mine' link only if there are more than one user. */
-	if ( $media_filter_user_total > 1 ) {
+	/* Get current user attachment count. @link: http://codex.wordpress.org/Class_Reference/wpdb */
+	global $wpdb;
+	$media_filter_count_mine_attachment = $wpdb->get_var( $wpdb->prepare( "
+	SELECT COUNT(*)
+	FROM $wpdb->posts
+	WHERE post_type = 'attachment'
+	AND post_author = %s
+	AND post_status != 'trash'
+	", get_current_user_id() ) );
 	
-		/* Get current user attachment count. @link: http://codex.wordpress.org/Class_Reference/wpdb */
-		global $wpdb;
-		$media_filter_count_mine_attachment = $wpdb->get_var( $wpdb->prepare( "
-		SELECT COUNT(*)
-		FROM $wpdb->posts
-		WHERE post_type = 'attachment'
-		AND post_author = %s
-		AND post_status != 'trash'
-		", get_current_user_id() ) );
+	/* Add 'mine' link only if there are more than one user and user have attachments. */
+	if ( $media_filter_user_total > 1 && $media_filter_count_mine_attachment > 0 ) {
 
 		$new_views = array(
 			'media-filter-mine' => sprintf( '<a %s href="%s">%s</a>', $class, esc_url( add_query_arg( 'author', get_current_user_id(), 'upload.php' ) ), sprintf( _n( 'Mine <span class="count">(%s)</span>', 'Mine <span class="count">(%s)</span>', $media_filter_count_mine_attachment, 'media-filter' ), number_format_i18n( $media_filter_count_mine_attachment ) ) ) 
