@@ -166,8 +166,6 @@ function media_filter_post_mime_types( $post_mime_types ) {
  * @since 0.1.0
  */
 function media_filter_upload_views_filterable( $views ) {
-
-	//$class = ( isset( $_GET['author'] ) && $_GET['author'] == get_current_user_id() ) ? ' class="current"' : '';
 	
 	if ( isset( $_GET['author'] ) && $_GET['author'] == get_current_user_id() ) {
 		
@@ -181,11 +179,25 @@ function media_filter_upload_views_filterable( $views ) {
 	else {
 		$class = '';
 	}
+	
+	/* Get current user attachment count. @link: http://codex.wordpress.org/Class_Reference/wpdb */
+	global $wpdb, $current_user;
+	$media_filter_count_mine_attachment = $wpdb->get_var( $wpdb->prepare(
+	"
+	SELECT COUNT(*)
+	FROM $wpdb->posts
+	WHERE post_type = 'attachment'
+	AND post_author = $current_user->ID
+	AND post_status != 'trash'
+	"
+	) );
 
 	$new_views = array(
-		'mine-media' => sprintf( '<a %s href="%s">%s</a>', $class, esc_url( add_query_arg( 'author', get_current_user_id(), 'upload.php' ) ), __( 'Mine', 'media-filter' ) )
+		//'mine-media' => sprintf( '<a %s href="%s">%s</a>', $class, esc_url( add_query_arg( 'author', get_current_user_id(), 'upload.php' ) ), _n( 'Mine <span class="count">(%d)</span>', 'Mine <span class="count">(%d)</span>', $media_filter_count_mine_attachment, 'media-filter' ), number_format_i18n( $media_filter_count_mine_attachment ) )
+		'media-filter-mine' => sprintf( '<a %s href="%s">%s</a>', $class, esc_url( add_query_arg( 'author', get_current_user_id(), 'upload.php' ) ), sprintf( _n( 'Mine <span class="count">(%s)</span>', 'Mine <span class="count">(%s)</span>', $media_filter_count_mine_attachment, 'media-filter' ), number_format_i18n( $media_filter_count_mine_attachment ) ) ) 
 	);
-
+	
+	/* Return $views so that 'Mine' attachments are first. */
 	return array_merge( $new_views, $views );
 	
 }
