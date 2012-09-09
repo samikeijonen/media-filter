@@ -33,18 +33,21 @@ add_action( 'plugins_loaded', 'media_filter_setup' );
  */
 function media_filter_setup() {
 
-if( is_admin() ) {
+	if( is_admin() ) {
+	
+		/* Load the translation of the plugin. */
+		load_plugin_textdomain( 'media-filter', false, 'media-filter/languages' );
 
-	// Add Sortable Width and Height Columns to the Media Library
-	add_filter( 'manage_media_columns', 'media_filter_columns_register' );
-	add_filter( 'manage_media_custom_column', 'media_filter_columns_display', 10, 2 );
-	add_filter( 'manage_upload_sortable_columns', 'media_filter_columns_sortable' );
+		// Add Sortable Width and Height Columns to the Media Library
+		add_filter( 'manage_media_columns', 'media_filter_columns_register' );
+		add_filter( 'manage_media_custom_column', 'media_filter_columns_display', 10, 2 );
+		add_filter( 'manage_upload_sortable_columns', 'media_filter_columns_sortable' );
 	
-	// Add pdf mime type  
-	add_filter( 'post_mime_types', 'media_filter_post_mime_types' );
+		// Add pdf mime type  
+		add_filter( 'post_mime_types', 'media_filter_post_mime_types' );
 	
-	// Add 'mine' media
-	add_filter( 'views_upload', 'media_filter_upload_views_filterable' );
+		// Add 'mine' media
+		add_filter( 'views_upload', 'media_filter_upload_views_filterable' );
 	
 	}
 	
@@ -149,8 +152,8 @@ function media_filter_post_mime_types( $post_mime_types ) {
 
 	/* PDF is 'application/pdf', ZIP is 'application/zip'.  */
 
-	$post_mime_types['application/pdf'] = array( __( 'PDFs', 'media-filter' ), __( 'Manage PDFs', 'media-filter' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' ) );
-	$post_mime_types['application/zip'] = array( __( 'ZIPs', 'media-filter' ), __( 'Manage ZIPs', 'media-filter' ), _n_noop( 'ZIP <span class="count">(%s)</span>', 'ZIPs <span class="count">(%s)</span>' ) );
+	$post_mime_types['application/pdf'] = array( __( 'PDFs', 'media-filter' ), __( 'Manage PDFs', 'media-filter' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>', 'media-filter' ) );
+	$post_mime_types['application/zip'] = array( __( 'ZIPs', 'media-filter' ), __( 'Manage ZIPs', 'media-filter' ), _n_noop( 'ZIP <span class="count">(%s)</span>', 'ZIPs <span class="count">(%s)</span>', 'media-filter' ) );
 	
 	/* Return the $post_mime_types variable. */
 	return $post_mime_types;
