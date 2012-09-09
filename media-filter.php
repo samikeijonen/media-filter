@@ -61,9 +61,9 @@ function media_filter_setup() {
 function media_filter_columns_register( $columns ) {
 
 	/* Add colums in media (upload.php). */
-	$columns['my-author'] = __( 'Author', 'media-filter' );
-	$columns['width'] = __( 'Width', 'media-filter' );
-	$columns['height'] = __( 'Height', 'media-filter' );
+	$columns['media-filter-author'] = __( 'Author', 'media-filter' );
+	$columns['media-filter-width'] = __( 'Width', 'media-filter' );
+	$columns['media-filter-height'] = __( 'Height', 'media-filter' );
 	$date = $columns['date'];
 	$comments = $columns['comments'];
 	unset( $columns['date'] );
@@ -87,32 +87,32 @@ function media_filter_columns_register( $columns ) {
 function media_filter_columns_display( $column_name, $post ) {
 	
 	/* Get metainfo from image. */
-	$meta = wp_get_attachment_metadata( get_the_ID() );
+	$media_filter_meta = wp_get_attachment_metadata( get_the_ID() );
 
 	switch( $column_name ) {
 
 		/* If displaying the 'width' column. */
-		case 'width' :
+		case 'media-filter-width' :
 
-			if ( !empty( $meta['width'] ) )
-				echo $meta['width'];
+			if ( !empty( $media_filter_meta['width'] ) )
+				echo $media_filter_meta['width'];
 			else
 				echo __( '&nbsp;', 'media-filter' );
 
 			break;
 
 		/* If displaying the 'height' column. */
-		case 'height' :
+		case 'media-filter-height' :
 			
-		if ( !empty( $meta['height'] ) )	
-			echo $meta['height'];
+		if ( !empty( $media_filter_meta['height'] ) )	
+			echo $media_filter_meta['height'];
 		else
 			echo __( '&nbsp;', 'media-filter' );
 
 			break;
 			
 		/* If displaying the 'my-author' column. */
-		case 'my-author' :
+		case 'media-filter-author' :
 		
 		printf( '<a href="%s">%s</a>',
 			esc_url( add_query_arg( array( 'author' => get_the_author_meta( 'ID' ) ), 'upload.php' )),
@@ -133,13 +133,14 @@ function media_filter_columns_display( $column_name, $post ) {
  * Registering columns as sortable
  *
  * @since 0.1.0
- 
+ *
  * @todo: make columns width and height sortable, they are not yet.
  */
 function media_filter_columns_sortable( $columns ) {
 
-    $columns['width'] = 'width';
-    $columns['height'] = 'height';
+    $columns['media-filter-width'] = 'width';
+    $columns['media-filter-height'] = 'height';
+	$columns['media-filter-author'] = 'author';
 
     return $columns;
 	
@@ -172,14 +173,14 @@ function media_filter_upload_views_filterable( $views ) {
 	if ( isset( $_GET['author'] ) && $_GET['author'] == get_current_user_id() ) {
 		
 		/* Current class. */
-		$class = ' class="current"';
+		$media_filter_class = ' class="current"';
 		
 		/* Remove 'current' class from all-link. */
 		add_action( 'admin_footer', 'media_filter_footer_scripts', 20 );
 		
 	}
 	else {
-		$class = '';
+		$media_filter_class = '';
 	}
 	
 	/* Get total user count. */
@@ -199,12 +200,12 @@ function media_filter_upload_views_filterable( $views ) {
 	/* Add 'mine' link only if there are more than one user and user have attachments. */
 	if ( $media_filter_user_total > 1 && $media_filter_count_mine_attachment > 0 ) {
 
-		$new_views = array(
-			'media-filter-mine' => sprintf( '<a %s href="%s">%s</a>', $class, esc_url( add_query_arg( 'author', get_current_user_id(), 'upload.php' ) ), sprintf( _n( 'Mine <span class="count">(%s)</span>', 'Mine <span class="count">(%s)</span>', $media_filter_count_mine_attachment, 'media-filter' ), number_format_i18n( $media_filter_count_mine_attachment ) ) ) 
+		$media_filter_views = array(
+			'media-filter-mine' => sprintf( '<a %s href="%s">%s</a>', $media_filter_class, esc_url( add_query_arg( 'author', get_current_user_id(), 'upload.php' ) ), sprintf( _n( 'Mine <span class="count">(%s)</span>', 'Mine <span class="count">(%s)</span>', $media_filter_count_mine_attachment, 'media-filter' ), number_format_i18n( $media_filter_count_mine_attachment ) ) ) 
 		);
 	
 		/* Return $views so that 'Mine' attachments are first. */
-		return array_merge( $new_views, $views );
+		return array_merge( $media_filter_views, $views );
 	
 	}
 	else {
