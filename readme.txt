@@ -27,6 +27,10 @@ It makes media files easier to find in multi-author websites.
 
 This is a great help in multi-author websites where you have lots of media files.
 
+= Why there is no 'Mine' link in my Media Library? =
+
+Mine link is only shown when there are more than one user and user have attachments.
+
 == Screenshots ==
 
 1. Media Library with extra links
