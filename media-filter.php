@@ -3,7 +3,7 @@
  * Plugin Name: Media Filter
  * Plugin URI: http://foxnet.fi/en
  * Description: Media Filter adds image width and height, clickable author link and 'mine' link in Media Library (upload.php).
- * Version: 0.1
+ * Version: 0.1.1
  * Author: Sami Keijonen
  * Author URI: http://foxnet.fi/en
  * Contributors: samikeijonen
@@ -17,7 +17,7 @@
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @package MediaFilter
- * @version 0.1
+ * @version 0.1.1
  * @author Sami Keijonen <sami.keijonen@foxnet.fi>
  * @copyright Copyright (c) 2012, Sami Keijonen
  * @license http://www.gnu.org/licenses/gpl-2.0.html
@@ -62,6 +62,7 @@ function media_filter_columns_register( $columns ) {
 
 	/* Add colums in media (upload.php). */
 	$columns['media-filter-author'] = __( 'Author', 'media-filter' );
+	$columns['media-filter-size'] = __( 'File Size', 'media-filter' );
 	$columns['media-filter-width'] = __( 'Width', 'media-filter' );
 	$columns['media-filter-height'] = __( 'Height', 'media-filter' );
 	$date = $columns['date'];
@@ -88,6 +89,13 @@ function media_filter_columns_display( $column_name, $post ) {
 	
 	/* Get metainfo from image. */
 	$media_filter_meta = wp_get_attachment_metadata( get_the_ID() );
+	
+	/* Get File Size. */
+	$media_filter_size = filesize( get_attached_file( get_the_ID() ) );
+	if ( FALSE === $media_filter_size )
+		$media_filter_size  = 0;
+	else
+		$media_filter_size = size_format( $media_filter_size, apply_filters( 'media_filter_size_format', 2 ) );
 
 	switch( $column_name ) {
 
@@ -110,12 +118,19 @@ function media_filter_columns_display( $column_name, $post ) {
 			echo __( '&nbsp;', 'media-filter' );
 
 			break;
-			
+
+		/* If displaying the 'size' column. */
+		case 'media-filter-size' :
+				
+			echo $media_filter_size;
+
+			break;
+		
 		/* If displaying the 'my-author' column. */
 		case 'media-filter-author' :
 		
 		printf( '<a href="%s">%s</a>',
-			esc_url( add_query_arg( array( 'author' => get_the_author_meta( 'ID' ) ), 'upload.php' )),
+			esc_url( add_query_arg( array( 'author' => get_the_author_meta( 'ID' ) ), 'upload.php' ) ),
 			get_the_author()
 		);
 		
@@ -153,10 +168,16 @@ function media_filter_columns_sortable( $columns ) {
  */
 function media_filter_post_mime_types( $post_mime_types ) {
 
-	/* PDF is 'application/pdf', ZIP is 'application/zip'.  */
+	/* PDF is 'application/pdf', ZIP is 'application/zip'. */
 
 	$post_mime_types['application/pdf'] = array( __( 'PDFs', 'media-filter' ), __( 'Manage PDFs', 'media-filter' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>', 'media-filter' ) );
 	$post_mime_types['application/zip'] = array( __( 'ZIPs', 'media-filter' ), __( 'Manage ZIPs', 'media-filter' ), _n_noop( 'ZIP <span class="count">(%s)</span>', 'ZIPs <span class="count">(%s)</span>', 'media-filter' ) );
+	$post_mime_types['text/plain'] = array( __( 'TXTs', 'media-filter' ), __( 'Manage TXTs', 'media-filter' ), _n_noop( 'TXT <span class="count">(%s)</span>', 'TXTs <span class="count">(%s)</span>', 'media-filter' ) );
+	$post_mime_types['text/css'] = array( __( 'CSSs', 'media-filter' ), __( 'Manage CSSs', 'media-filter' ), _n_noop( 'CSS <span class="count">(%s)</span>', 'CSSs <span class="count">(%s)</span>', 'media-filter' ) );
+	$post_mime_types['text/html'] = array( __( 'HTMLs', 'media-filter' ), __( 'Manage HTMLs', 'media-filter' ), _n_noop( 'HTML <span class="count">(%s)</span>', 'HTMLs <span class="count">(%s)</span>', 'media-filter' ) );
+	$post_mime_types['application/msword'] = array( __( 'DOCs', 'media-filter' ), __( 'Manage DOCs', 'media-filter' ), _n_noop( 'DOC <span class="count">(%s)</span>', 'DOCs <span class="count">(%s)</span>', 'media-filter' ) );
+	$post_mime_types['application/vnd.ms-powerpoint'] = array( __( 'PPTs', 'media-filter' ), __( 'Manage PPTs', 'media-filter' ), _n_noop( 'PPT <span class="count">(%s)</span>', 'PPTs <span class="count">(%s)</span>', 'media-filter' ) );
+	$post_mime_types['application/vnd.ms-excel'] = array( __( 'XLSXs', 'media-filter' ), __( 'Manage XLSXs', 'media-filter' ), _n_noop( 'XLSX <span class="count">(%s)</span>', 'XLSXs <span class="count">(%s)</span>', 'media-filter' ) );
 	
 	/* Return the $post_mime_types variable. */
 	return $post_mime_types;

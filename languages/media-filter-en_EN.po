@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Media Filter Plugin v0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-09 18:26+0200\n"
-"PO-Revision-Date: 2012-09-09 18:26+0200\n"
+"POT-Creation-Date: 2012-09-17 21:32+0200\n"
+"PO-Revision-Date: 2012-09-17 21:32+0200\n"
 "Last-Translator: Sami Keijonen <sami.keijonen@foxnet.fi>\n"
 "Language-Team: Foxnet <sami.keijonen@foxnet.fi>\n"
 "Language: en_EN\n"
@@ -14,6 +14,7 @@ msgstr ""
 "esc_html__;esc_html_e;_n;_x:1,2c;_n_noop:1,2;_n:1,2\n"
 "X-Poedit-Basepath: ../\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.5.3\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: media-filter.php:64
@@ -21,48 +22,142 @@ msgid "Author"
 msgstr ""
 
 #: media-filter.php:65
-msgid "Width"
+msgid "File Size"
 msgstr ""
 
 #: media-filter.php:66
+msgid "Width"
+msgstr ""
+
+#: media-filter.php:67
 msgid "Height"
 msgstr ""
 
-#: media-filter.php:100 media-filter.php:110
+#: media-filter.php:108 media-filter.php:118
 msgid "&nbsp;"
 msgstr ""
 
-#: media-filter.php:155
+#: media-filter.php:173
 msgid "PDFs"
 msgstr ""
 
-#: media-filter.php:155
+#: media-filter.php:173
 msgid "Manage PDFs"
 msgstr ""
 
-#: media-filter.php:155
+#: media-filter.php:173
 #, php-format
 msgid "PDF <span class=\"count\">(%s)</span>"
 msgid_plural "PDFs <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: media-filter.php:156
+#: media-filter.php:174
 msgid "ZIPs"
 msgstr ""
 
-#: media-filter.php:156
+#: media-filter.php:174
 msgid "Manage ZIPs"
 msgstr ""
 
-#: media-filter.php:156
+#: media-filter.php:174
 #, php-format
 msgid "ZIP <span class=\"count\">(%s)</span>"
 msgid_plural "ZIPs <span class=\"count\">(%s)</span>"
 msgstr[0] ""
 msgstr[1] ""
 
-#: media-filter.php:197
+#: media-filter.php:175
+msgid "TXTs"
+msgstr ""
+
+#: media-filter.php:175
+msgid "Manage TXTs"
+msgstr ""
+
+#: media-filter.php:175
+#, php-format
+msgid "TXT <span class=\"count\">(%s)</span>"
+msgid_plural "TXTs <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: media-filter.php:176
+msgid "CSSs"
+msgstr ""
+
+#: media-filter.php:176
+msgid "Manage CSSs"
+msgstr ""
+
+#: media-filter.php:176
+#, php-format
+msgid "CSS <span class=\"count\">(%s)</span>"
+msgid_plural "CSSs <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: media-filter.php:177
+msgid "HTMLs"
+msgstr ""
+
+#: media-filter.php:177
+msgid "Manage HTMLs"
+msgstr ""
+
+#: media-filter.php:177
+#, php-format
+msgid "HTML <span class=\"count\">(%s)</span>"
+msgid_plural "HTMLs <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: media-filter.php:178
+msgid "DOCs"
+msgstr ""
+
+#: media-filter.php:178
+msgid "Manage DOCs"
+msgstr ""
+
+#: media-filter.php:178
+#, php-format
+msgid "DOC <span class=\"count\">(%s)</span>"
+msgid_plural "DOCs <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: media-filter.php:179
+msgid "PPTs"
+msgstr ""
+
+#: media-filter.php:179
+msgid "Manage PPTs"
+msgstr ""
+
+#: media-filter.php:179
+#, php-format
+msgid "PPT <span class=\"count\">(%s)</span>"
+msgid_plural "PPTs <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: media-filter.php:180
+msgid "XLSXs"
+msgstr ""
+
+#: media-filter.php:180
+msgid "Manage XLSXs"
+msgstr ""
+
+#: media-filter.php:180
+#, php-format
+msgid "XLSX <span class=\"count\">(%s)</span>"
+msgid_plural "XLSXs <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: media-filter.php:225
 #, php-format
 msgid "Mine <span class=\"count\">(%s)</span>"
 msgid_plural "Mine <span class=\"count\">(%s)</span>"
