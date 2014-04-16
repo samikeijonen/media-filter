@@ -1,11 +1,13 @@
 <?php
 /**
  * Plugin Name: Media Filter
- * Plugin URI: http://foxnet.fi/en
+ * Plugin URI: https://foxnet-themes.fi/downloads/media-filter/
  * Description: Media Filter adds image width and height, clickable author link and 'mine' link in Media Library (upload.php).
- * Version: 0.1.1
+ * Version: 0.1.2
  * Author: Sami Keijonen
- * Author URI: http://foxnet.fi/en
+ * Author URI: https://foxnet-themes.fi/
+ * Text Domain: media-filter
+ * Domain Path: /languages
  * Contributors: samikeijonen
  * Thanks: Justin Tadlock
  *
@@ -17,9 +19,9 @@
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @package MediaFilter
- * @version 0.1.1
+ * @version 0.1.2
  * @author Sami Keijonen <sami.keijonen@foxnet.fi>
- * @copyright Copyright (c) 2012, Sami Keijonen
+ * @copyright Copyright (c) 2014, Sami Keijonen
  * @license http://www.gnu.org/licenses/gpl-2.0.html
  */
 
@@ -36,7 +38,7 @@ function media_filter_setup() {
 	if( is_admin() ) {
 	
 		/* Load the translation of the plugin. */
-		load_plugin_textdomain( 'media-filter', false, 'media-filter/languages' );
+		load_plugin_textdomain( 'media-filter', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 		// Add Sortable Width and Height Columns to the Media Library
 		add_filter( 'manage_media_columns', 'media_filter_columns_register' );
