@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Media Filter Plugin v0.1\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-17 21:32+0200\n"
-"PO-Revision-Date: 2012-09-17 21:33+0200\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/media-filter\n"
+"POT-Creation-Date: 2014-04-16 18:44:40+00:00\n"
+"PO-Revision-Date: 2014-04-16 21:49+0200\n"
 "Last-Translator: Sami Keijonen <sami.keijonen@foxnet.fi>\n"
 "Language-Team: Foxnet <sami.keijonen@foxnet.fi>\n"
 "Language: fi\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.5.3\n"
+"X-Generator: Poedit 1.6.4\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: media-filter.php:64
@@ -47,7 +47,6 @@ msgid "Manage PDFs"
 msgstr "Hallitse PDF:iä"
 
 #: media-filter.php:173
-#, php-format
 msgid "PDF <span class=\"count\">(%s)</span>"
 msgid_plural "PDFs <span class=\"count\">(%s)</span>"
 msgstr[0] "PDF <span class=\"count\">(%s)</span>"
@@ -62,7 +61,6 @@ msgid "Manage ZIPs"
 msgstr "Haliitse ZIP:jä"
 
 #: media-filter.php:174
-#, php-format
 msgid "ZIP <span class=\"count\">(%s)</span>"
 msgid_plural "ZIPs <span class=\"count\">(%s)</span>"
 msgstr[0] "ZIP <span class=\"count\">(%s)</span>"
@@ -77,7 +75,6 @@ msgid "Manage TXTs"
 msgstr "Hallitse TXT:ja"
 
 #: media-filter.php:175
-#, php-format
 msgid "TXT <span class=\"count\">(%s)</span>"
 msgid_plural "TXTs <span class=\"count\">(%s)</span>"
 msgstr[0] "TXT <span class=\"count\">(%s)</span>"
@@ -92,7 +89,6 @@ msgid "Manage CSSs"
 msgstr "Hallitse CSS:iä"
 
 #: media-filter.php:176
-#, php-format
 msgid "CSS <span class=\"count\">(%s)</span>"
 msgid_plural "CSSs <span class=\"count\">(%s)</span>"
 msgstr[0] "CSS <span class=\"count\">(%s)</span>"
@@ -107,7 +103,6 @@ msgid "Manage HTMLs"
 msgstr "Hallitse HTML:ja"
 
 #: media-filter.php:177
-#, php-format
 msgid "HTML <span class=\"count\">(%s)</span>"
 msgid_plural "HTMLs <span class=\"count\">(%s)</span>"
 msgstr[0] "HTML <span class=\"count\">(%s)</span>"
@@ -122,7 +117,6 @@ msgid "Manage DOCs"
 msgstr "Hallitse DOC:ja"
 
 #: media-filter.php:178
-#, php-format
 msgid "DOC <span class=\"count\">(%s)</span>"
 msgid_plural "DOCs <span class=\"count\">(%s)</span>"
 msgstr[0] "DOC <span class=\"count\">(%s)</span>"
@@ -137,7 +131,6 @@ msgid "Manage PPTs"
 msgstr "Hallitse PPT:ja"
 
 #: media-filter.php:179
-#, php-format
 msgid "PPT <span class=\"count\">(%s)</span>"
 msgid_plural "PPTs <span class=\"count\">(%s)</span>"
 msgstr[0] "PPT <span class=\"count\">(%s)</span>"
@@ -152,18 +145,37 @@ msgid "Manage XLSXs"
 msgstr "Hallitse XLSX:iä"
 
 #: media-filter.php:180
-#, php-format
 msgid "XLSX <span class=\"count\">(%s)</span>"
 msgid_plural "XLSXs <span class=\"count\">(%s)</span>"
 msgstr[0] "XLSX <span class=\"count\">(%s)</span>"
 msgstr[1] "XLSX:t <span class=\"count\">(%s)</span>"
 
 #: media-filter.php:225
-#, php-format
 msgid "Mine <span class=\"count\">(%s)</span>"
 msgid_plural "Mine <span class=\"count\">(%s)</span>"
 msgstr[0] "Oma <span class=\"count\">(%s)</span>"
 msgstr[1] "Omat <span class=\"count\">(%s)</span>"
+
+#. Plugin Name of the plugin/theme
+msgid "Media Filter"
+msgstr "Mediasuodatin"
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "http://foxnet.fi/en"
+msgstr "http://foxnet.fi/en"
+
+#. Description of the plugin/theme
+msgid ""
+"Media Filter adds image width and height, clickable author link and 'mine' "
+"link in Media Library (upload.php)."
+msgstr ""
+"Mediasuodatin lisää kuvan leveyden ja korkeuden sekä median lataajan linkin "
+"mediakirjastoon (upload.php)."
+
+#. Author of the plugin/theme
+msgid "Sami Keijonen"
+msgstr "Sami Keijonen"
 
 #~ msgid "Mine"
 #~ msgid_plural "Mine"
